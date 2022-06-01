@@ -3,7 +3,7 @@ from apf.core import get_class
 from apf.producers import KafkaProducer
 from db_plugins.db.mongo.connection import MongoDatabaseCreator
 from db_plugins.db.generic import new_DBConnection
-from survey_parser_plugins import ALeRCEParser
+from survey_parser_plugins.core import ELAsTiCCParser
 from typing import List
 from .utils.sorting_hat import SortingHat
 
@@ -35,7 +35,7 @@ class SortingHatStep(GenericStep):
         self.driver = db_connection or new_DBConnection(MongoDatabaseCreator)
         self.driver.connect(config["DB_CONFIG"])
         self.version = config["STEP_METADATA"]["STEP_VERSION"]
-        self.parser = ALeRCEParser()
+        self.parser = ELAsTiCCParser()
         self.wizard = SortingHat(self.driver)
 
     def produce(self, alerts: pd.DataFrame) -> None:
@@ -79,7 +79,7 @@ class SortingHatStep(GenericStep):
         del alerts["stamps"]
         self.logger.info(f"Processing {len(alerts)} alerts")
         # Put name of ALeRCE in alerts
-        alerts = self.wizard.to_name(alerts)
+        alerts = self.wizard.to_name_elasticc(alerts)
         if self.producer:
             self.produce(alerts)
         del alerts

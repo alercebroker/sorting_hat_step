@@ -5,7 +5,10 @@ EXTRA_FIELDS = {
       "int",
       "float",
       "string",
-      "bytes"
+      "bytes",
+      {
+        "type": "map", "values": ["string", "float", "null", "int"],
+      }
     ],
     "default": {}
 }

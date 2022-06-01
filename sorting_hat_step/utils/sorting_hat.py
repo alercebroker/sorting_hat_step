@@ -259,3 +259,17 @@ class SortingHat:
         # Remove column tmp_id (really is an index) forever
         alerts.reset_index(inplace=True, drop=True)
         return alerts
+
+    def to_name_elasticc(self, alerts: pd.DataFrame) -> pd.DataFrame:
+        """
+        Generate an alerce_id to a batch of alerts given its oid, ra, dec and radius.
+        :param alerts: Dataframe of alerts
+        :return: Dataframe of alerts with a new column called `aid` (alerce_id)
+        """
+        alerts["aid"] = alerts["oid"].values.astype(str)
+        alerts["oid"] = alerts["oid"].values.astype(str)
+        alerts["pid"] = 0
+        alerts["isdiffpos"] = 0
+        alerts["e_ra"] = .0
+        alerts["e_dec"] = .0
+        return alerts
