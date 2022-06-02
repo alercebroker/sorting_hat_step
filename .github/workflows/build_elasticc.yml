@@ -1,4 +1,4 @@
-name: build_staging_image
+name: build_elasticc_image
 on:
   push:
     branches:
