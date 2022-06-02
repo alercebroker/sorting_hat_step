@@ -270,6 +270,6 @@ class SortingHat:
         alerts["oid"] = alerts["oid"].values.astype(str)
         alerts["pid"] = 0
         alerts["isdiffpos"] = 0
-        alerts["e_ra"] = .0
-        alerts["e_dec"] = .0
+        alerts["e_ra"] = .01
+        alerts["e_dec"] = .01
         return alerts
