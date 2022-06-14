@@ -1,6 +1,6 @@
 numpy
 scipy
 
-git+https://github.com/alercebroker/survey-parser-plugins@elasticc#egg=survey-parser-plugins
+git+https://github.com/alercebroker/survey-parser-plugins@elasticc
 git+https://github.com/alercebroker/db-plugins@2.0.2
 git+https://github.com/alercebroker/APF@elasticc
