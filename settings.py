@@ -26,6 +26,7 @@ CONSUMER_CONFIG = {
     },
     "consume.timeout": int(os.getenv("CONSUME_TIMEOUT", 10)),
     "consume.messages": int(os.getenv("CONSUME_MESSAGES", 100)),
+    "SCHEMA_PATH": os.getenv("SCHEMA_PATH", "../alert_schema/elasticc.v0_9.alert.avsc")
 }
 
 if os.getenv("TOPIC_STRATEGY_FORMAT"):
