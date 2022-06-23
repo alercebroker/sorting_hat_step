@@ -1,3 +1,5 @@
+import datetime
+
 from apf.core.step import GenericStep
 from apf.core import get_class
 from apf.producers import KafkaProducer
@@ -68,14 +70,29 @@ class SortingHatStep(GenericStep):
             n_messages += 1
         self.logger.info(f"{n_messages} messages Produced")
 
+    @classmethod
+    def get_consume_timestamps(cls, messages: List[dict]) -> List[int]:
+        timestamps = []
+        for m in messages:
+            if "_timestamp" in m.keys():
+                timestamp = m["_timestamp"][1]
+                timestamps.append(timestamp)
+                del m["_timestamp"]
+            else:
+                timestamps.append(-1)
+        return timestamps
+
     def execute(self, messages: List[dict]) -> None:
         """
         Execute method of APF. This method consume message from CONSUMER_SETTINGS.
         :param messages: List of deserialized messages
         :return:
         """
+        timestamps = self.get_consume_timestamps(messages)
         response = self.parser.parse(messages)
         alerts = pd.DataFrame(response)
+        alerts["elasticcPublishTimestamp"] = timestamps
+        alerts["brokerIngestTimestamp"] = int(datetime.datetime.now().timestamp() * 1000)
         del alerts["stamps"]
         self.logger.info(f"Processing {len(alerts)} alerts")
         # Put name of ALeRCE in alerts

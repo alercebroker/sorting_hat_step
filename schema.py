@@ -90,5 +90,13 @@ SCHEMA = {
       "name": "aid",
       "type": "string"
     },
+    {
+      "name": "elasticcPublishTimestamp",
+      "type": "long"
+    },
+    {
+      "name": "brokerIngestTimestamp",
+      "type": "long"
+    },
   ]
 }

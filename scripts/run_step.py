@@ -25,7 +25,7 @@ if "CLASS" in CONSUMER_CONFIG:
 else:
     from apf.consumers import KafkaSchemalessConsumer as Consumer
 
-consumer = Consumer(config=CONSUMER_CONFIG)
+consumer = Consumer(config=CONSUMER_CONFIG, timestamp=True)
 
 step = SortingHatStep(consumer, config=STEP_CONFIG, level=level)
 step.start()
