@@ -92,11 +92,11 @@ SCHEMA = {
     },
     {
       "name": "elasticcPublishTimestamp",
-      "type": "long"
+      "type": {"type": "long", "logicalType": "timestamp-millis"},
     },
     {
       "name": "brokerIngestTimestamp",
-      "type": "long"
+      "type": {"type": "long", "logicalType": "timestamp-millis"},
     },
   ]
 }
