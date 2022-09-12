@@ -2,12 +2,13 @@ EXTRA_FIELDS = {
     "type": "map",
     "values": [
       "null",
+      "long",
       "int",
       "float",
       "string",
       "bytes",
       {
-        "type": "map", "values": ["string", "float", "null", "int"],
+        "type": "map", "values": ["long", "string", "float", "null", "int"],
       }
     ],
     "default": {}

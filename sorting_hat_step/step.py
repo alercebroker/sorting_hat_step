@@ -91,8 +91,12 @@ class SortingHatStep(GenericStep):
         timestamps = self.get_consume_timestamps(messages)
         response = self.parser.parse(messages)
         alerts = pd.DataFrame(response)
+        for i in range(len(alerts)):
+            print(alerts.loc[i]["extra_fields"]["alertId"])
         alerts["elasticcPublishTimestamp"] = timestamps
-        alerts["brokerIngestTimestamp"] = int(datetime.datetime.now().timestamp() * 1000)
+        alerts["brokerIngestTimestamp"] = int(
+            datetime.datetime.now().timestamp() * 1000
+        )
         del alerts["stamps"]
         self.logger.info(f"Processing {len(alerts)} alerts")
         # Put name of ALeRCE in alerts
@@ -102,3 +106,4 @@ class SortingHatStep(GenericStep):
         del alerts
         del messages
         del response
+        input("djhkasdhkjas")
