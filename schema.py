@@ -31,7 +31,7 @@ SCHEMA = {
         {"name": "rbversion", "type": ["null", "string"]},
         {"name": "mag", "type": "float"},
         {"name": "e_mag", "type": "float"},
-        {"name": "rfid", "type": ["null", "int"]},
+        {"name": "rfid", "type": ["null", "int", "long"]},
         {"name": "isdiffpos", "type": "int"},
         {"name": "e_ra", "type": "float"},
         {"name": "e_dec", "type": "float"},
